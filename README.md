@@ -1,6 +1,6 @@
 # Simple Lexer Parser
 
-A simple lexer and parser that can compute simple mathematical operations using the most basic operators `+, -, *, /` and can correctly handle parentheses `()`.
+A simple lexer and parser that can compute simple mathematical operations using the most basic operators `+, -, *, /` and can correctly handle parentheses `()` and floating point operations (decimal numbers).  It can NOT currently handle negative numbers or unary operations.
 
 It is implemented as a Drupal 8 service module and provides a text field formatter.
 
