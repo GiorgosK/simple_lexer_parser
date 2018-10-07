@@ -1,0 +1,4 @@
+services:
+  simple_lexer_parser.calculator:
+    class: Drupal\simple_lexer_parser\Calculator
+    arguments: []
