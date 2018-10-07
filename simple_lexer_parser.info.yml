@@ -1,0 +1,5 @@
+name: 'simple lexer parser'
+type: module
+description: 'Able compute simple mathematical operations using the most basic operations (+, -, *, /)'
+core: 8.x
+package: 'custom'
