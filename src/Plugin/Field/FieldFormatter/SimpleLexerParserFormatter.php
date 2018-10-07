@@ -75,9 +75,14 @@ class SimpleLexerParserFormatter extends FormatterBase {
    *   The textual output generated.
    */
   protected function viewValue(FieldItemInterface $item) {
-    // The text value has no text format assigned to it, so the user input
-    // should equal the output, including newlines.
-    return nl2br(Html::escape($item->value));
+    $Calc = \Drupal::service('simple_lexer_parser.calculator');
+    $postfix = $Calc->lexer($item->value);
+    if(substr($postfix,0,6) !== "ERROR:"){
+      $result = " = " . $Calc->evaluate($postfix);
+    }else{
+      $result = " " . $postfix;
+    }
+    return nl2br(Html::escape($item->value . $result));
   }
 
 }
