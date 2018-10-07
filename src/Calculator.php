@@ -54,7 +54,7 @@ class Calculator {
         }
         $tokens[] = floatval($number);
       } else {
-        $error = "ERROR: Invalid character (" . $expression[$i] . ") at position" . $i;
+        $error = "ERROR: Invalid character (" . $expression[$i] . ") at position " . $i;
         return $error;
       }
     }
