@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function simple_lexer_parser_theme() {
+  return [
+    'simple_lexer_parser' => [
+      'variables' => [
+        'expression' => '',
+        'result' => '',
+      ],
+      'template' => 'simple-lexer-parser',
+    ],
+  ];
+}

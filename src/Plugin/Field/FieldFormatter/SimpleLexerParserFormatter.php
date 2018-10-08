@@ -59,7 +59,20 @@ class SimpleLexerParserFormatter extends FormatterBase {
     $elements = [];
 
     foreach ($items as $delta => $item) {
-      $elements[$delta] = ['#markup' => $this->viewValue($item)];
+      $elements[$delta] = [
+        '#theme' => 'simple_lexer_parser',
+        '#type' => 'container',
+        '#attributes' => [
+          'class' => ['simple-lexer-parser-container'],
+        ],
+        '#attached' => [
+          'library' => [
+            'simple_lexer_parser/animate_expression',
+          ],
+        ],
+        '#result' => $this->viewValue($item),
+        '#expression' => $item->value,
+      ];
     }
 
     return $elements;
@@ -78,11 +91,10 @@ class SimpleLexerParserFormatter extends FormatterBase {
     $Calc = \Drupal::service('simple_lexer_parser.calculator');
     $postfix = $Calc->lexer($item->value);
     if(substr($postfix,0,6) !== "ERROR:"){
-      $result = " = " . $Calc->evaluate($postfix);
+      $result = $Calc->evaluate($postfix);
     }else{
-      $result = " " . $postfix;
+      $result = $postfix;
     }
-    return nl2br(Html::escape($item->value . $result));
+    return nl2br(Html::escape($result));
   }
-
 }

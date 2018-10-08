@@ -1,0 +1,4 @@
+animate_expression:
+  css:
+    component:
+      css/simple_lexer_parser.animate.css: {}
