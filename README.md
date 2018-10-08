@@ -36,7 +36,7 @@ Run test cases for this module using `phpunit` (tested with phpunit 6.5)
 
 ```
 cd web
-../vendor/bin/phpunit -c core/phpunit.xml.dist modules/custom/simple_lexer_parser/tests/src/Calculator/CalculatorTest.php
+../vendor/bin/phpunit -c core/phpunit.xml.dist modules/contrib/simple_lexer_parser/tests/src/Calculator/CalculatorTest.php
 ```
 
 You should get 10 tests and 10 assertions
