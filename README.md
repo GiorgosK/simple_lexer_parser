@@ -30,6 +30,8 @@ The formatter will display both the expression and the result (or error message)
 (1 + 2) * 4  = 12
 ```
 
+The result will be revealed on hover with a delayed css animation
+
 ## Unit testing
 
 Run test cases for this module using `phpunit` (tested with phpunit 6.5)
