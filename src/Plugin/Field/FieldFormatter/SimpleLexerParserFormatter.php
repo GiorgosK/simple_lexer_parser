@@ -89,11 +89,13 @@ class SimpleLexerParserFormatter extends FormatterBase {
    */
   protected function viewValue(FieldItemInterface $item) {
     $Calc = \Drupal::service('simple_lexer_parser.calculator');
-    $postfix = $Calc->lexer($item->value);
-    if(substr($postfix,0,6) !== "ERROR:"){
+    try {
+      $postfix = $Calc->lexer($item->value);
       $result = $Calc->evaluate($postfix);
-    }else{
-      $result = $postfix;
+    }
+    catch (\Exception $e) {
+      drupal_set_message(t($e->getMessage()), 'error');
+      $result = $e->getMessage();
     }
     return nl2br(Html::escape($result));
   }

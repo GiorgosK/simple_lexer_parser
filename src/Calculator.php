@@ -17,12 +17,20 @@ class Calculator {
    *
    * @return string
    *   The result of the expression in postfix notation
+   *
+   * @throws \Exception
+   *   on following occasions
+   *   Empty expression
+   *   Invalid character
+   *   Mismatched parentheses
+   *   Unexpected token
+   *
    */
   function lexer($expression) {
 
     if (!$expression) {
-      $error = "ERROR: empty expression";
-      return $error;
+      $error = "Empty expression";
+      throw new \Exception($error);
     }
 
     $precedence = array(
@@ -54,8 +62,8 @@ class Calculator {
         }
         $tokens[] = floatval($number);
       } else {
-        $error = "ERROR: Invalid character (" . $expression[$i] . ") at position " . $i;
-        return $error;
+        $error = "Invalid character (" . $expression[$i] . ") at position " . $i;
+        throw new \Exception($error);
       }
     }
 
@@ -77,22 +85,22 @@ class Calculator {
         while (end($op_stack) !== '(') {
           $output_queue[] = array_pop($op_stack);
           if (!$op_stack) {
-            $error = "ERROR: Mismatched parentheses!";
-            return $error;
+            $error = "Mismatched parentheses!";
+            throw new \Exception($error);
           }
         }
         array_pop($op_stack);
       } else {
-        $error = "ERROR: Unexpected token $token";
-        return $error;
+        $error = "Unexpected token $token";
+        throw new \Exception($error);
       }
     }
 
     while ($op_stack) {
       $token = array_pop($op_stack);
       if ($token === '(') {
-        $error = "ERROR: Mismatched parentheses!";
-        return $error;
+        $error = "Mismatched parentheses!";
+        throw new \Exception($error);
       }
       $output_queue[] = $token;
     }
@@ -109,6 +117,8 @@ class Calculator {
    *
    * @return string
    *   The result of the expression
+   * @throws \Exception
+   *   When the unknown operator is found
    */
   public static function evaluate($postfix) {
     $stack = array();
@@ -133,8 +143,8 @@ class Calculator {
         } else if ($token[$i] == "+") {
           array_push($stack, $firstOperand + $secondOperand);
         } else {
-          $error = "ERROR: Unknown operator " . $token[$i];
-          return $error;
+          $error = "Unknown operator " . $token[$i];
+          throw new \Exception($error);
         }
       }
     }
