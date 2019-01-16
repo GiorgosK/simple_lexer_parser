@@ -42,3 +42,5 @@ cd web
 ```
 
 You should get 10 tests and 10 assertions
+
+if `phpnunit` is not in the bin folder try with `../vendor/phpunit/phpunit/phpunit` instead
